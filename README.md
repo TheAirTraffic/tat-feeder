@@ -2,9 +2,7 @@
 
 Feeding TheAirTraffic.com is quick and easy. There are various options depending on what kind of feeder/receiver you use,
 and your desired level of customization. it is recommended that FlightAware’s Raspberry Pi based “PiAware” be used to feed
-data to TheAirTraffic in order to send accurate MLAT results to the co-op.
-
-This setup script aids in setting up your current PiAware based feeder to feed TheAirTraffic as well.
+data to TheAirTraffic in order to send accurate MLAT results to the co-op. This script aids in setting up your current PiAware based feeder to feed TheAirTraffic as well.
 
 #### Obtaining And Using This Script
 
