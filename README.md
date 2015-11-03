@@ -11,8 +11,8 @@ This setup script aids in setting up your current PiAware based feeder to feed T
 Running the following commands will download and execute the script.
 
     sudo apt-get install git wget
-    git clone https://github.com/jprochazka/TheAirTraffic_setup.git
-    cd TheAirTraffic_setup
+    git clone https://github.com/jprochazka/TheAirTraffic.git
+    cd TheAirTraffic
     chmod 755 TheAirTraffic_setup.sh 
     ./TheAirTraffic_setup.sh
     
