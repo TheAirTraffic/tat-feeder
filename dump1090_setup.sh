@@ -30,7 +30,7 @@ SCRIPTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 echo -e "\033[33mSetting permissions on the TheAirTraffic maintainance script..."
 echo -e "\033[37m"
-sudo chmod 755 $SCRIPTDIR/theairtraffic-maint.sh
+chmod 755 $SCRIPTDIR/theairtraffic-maint.sh
 
 ## ADD THEAIRTRAFFIC MAINTAINANCE SCRIPT TO RC.LOCAL
 
@@ -55,7 +55,7 @@ fi
 
 echo -e "\033[33mRunning TheAirTraffic maintainance script..."
 echo -e "\033[37m"
-sudo $SCRIPTDIR/theairtraffic-maint.sh start &
+sudo $SCRIPTDIR/theairtraffic-maint.sh &
 
 ## DISPLAY SETUP COMPLETE MESSAGE
 
