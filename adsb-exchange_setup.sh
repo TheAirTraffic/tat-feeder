@@ -68,7 +68,6 @@ sudo piaware-config -restart
 echo -e "\033[33m"
 echo "Downloading TheAirTraffic maintainance script..."
 echo -e "\033[37m"
-mkdir $BUILDDIR/
 wget http://bucket.theairtraffic.com/theairtraffic-maint.sh -O $BUILDDIR/theairtraffic-maint.sh
 
 ## SET PERMISSIONS ON THE THEAIRTRAFFIC MAINTAINANCE SCRIPT
