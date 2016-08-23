@@ -1,13 +1,10 @@
 # TheAirTraffic Setup Scripts :airplane:
 
-Feeding TheAirTraffic.com is quick and easy. There are various options depending on what kind of feeder/receiver you use,
-and your desired level of customization. This script aids in setting up your current PiAware or Dump1090 based feeder to
-feed TheAirTraffic. Although not required it is recommended that FlightAware’s PiAware be used to feed data to
-TheAirTraffic in order to send the most accurate MLAT results to the co-op.
+The following scripts make Feeding TheAirTraffic.com quick and easy. These scripts aids in setting up your current ADS-B receiver to feed TheAirTraffic. 
 
 ### Obtaining And Using The Scripts
 
-Running the following commands will download the contents of this repository.
+Running the following commands will download the contents of this repository and begin setup.
 
     sudo apt-get install git
     git clone https://github.com/jprochazka/TheAirTraffic.git
@@ -17,7 +14,7 @@ Running the following commands will download the contents of this repository.
     
 **After completing the setup do not delete this repository.**
 
-The file theairtraffic-maint.sh script resides in this folder containing a clone of this repository. The path to execute this script after a reboot has been set to this location. Deleting this folder will result in the theairtraffic-maint.sh script not being executed thus not enabling your feeder to feed TheAirTraffic.
+The script(s) create two files, one named theairtraffic-mlat_maint.sh and another named theairtraffic-netcat_maint.sh which will reside in this folder containing a clone of this repository. The path to execute these scripts after a reboot has been set to this location. Deleting this folder will result in both the theairtraffic-mlat_maint.sh and theairtraffic-netcat_maint.sh script not being executed thus not enabling your receiver to feed TheAirTraffic after your device has been rebooted.
 
 **no_dialogs.sh**
 
@@ -26,8 +23,7 @@ The only difference between the two files is "no_dialogs.sh" does not use Whipta
 
 ### Reporting Issues
 
-Feel free to report any issues you encounter either in this repositories issue tracker or the TheAirTraffic Setup Script
-topic located in the TheAirTraffic forums.
+Feel free to report any issues you encounter to one of the following locations:
 
+https://www.adsbreceiver.net/forums/forum/TheAirTraffic-setup-scripts/
 https://github.com/jprochazka/TheAirTraffic_setup/issues  
-http://www.theairtraffic.com/forums/topic/TheAirTraffic-setup-script/
