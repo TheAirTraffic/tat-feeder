@@ -1,6 +1,6 @@
 # TheAirTraffic Setup Scripts :airplane:
 
-The following scripts make Feeding TheAirTraffic.com quick and easy. These scripts aids in setting up your current ADS-B receiver to feed TheAirTraffic. 
+These scripts aids in setting up your current ADS-B receiver to feed TheAirTraffic. 
 
 ### Obtaining And Using The Scripts
 
