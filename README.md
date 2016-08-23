@@ -1,6 +1,6 @@
 # TheAirTraffic Setup Scripts :airplane:
 
-These scripts aids in setting up your current ADS-B receiver to feed TheAirTraffic. 
+These scripts aid in setting up your current ADS-B receiver to feed TheAirTraffic. 
 
 ### Obtaining And Using The Scripts
 
@@ -14,7 +14,7 @@ Running the following commands will download the contents of this repository and
     
 **After completing the setup do not delete this repository.**
 
-The script(s) create two files, one named theairtraffic-mlat_maint.sh and another named theairtraffic-netcat_maint.sh which will reside in this folder containing a clone of this repository. The path to execute these scripts after a reboot has been set to this location. Deleting this folder will result in both the theairtraffic-mlat_maint.sh and theairtraffic-netcat_maint.sh script not being executed thus not enabling your receiver to feed TheAirTraffic after your device has been rebooted.
+The script(s) create two files, one named theairtraffic-mlat_maint.sh and another named theairtraffic-netcat_maint.sh which will reside in this folder containing a clone of this repository. The path to execute these scripts after each reboot has been set to this location. Deleting this folder will result in both the theairtraffic-mlat_maint.sh and theairtraffic-netcat_maint.sh scripts to not be executed thus not enabling your receiver to feed TheAirTraffic after your device has been rebooted.
 
 **no_dialogs.sh**
 
@@ -25,5 +25,5 @@ The only difference between the two files is "no_dialogs.sh" does not use Whipta
 
 Feel free to report any issues you encounter to one of the following locations:
 
-https://www.adsbreceiver.net/forums/forum/TheAirTraffic-setup-scripts/
+https://www.adsbreceiver.net/forums/forum/TheAirTraffic-setup-scripts/  
 https://github.com/jprochazka/TheAirTraffic_setup/issues  
