@@ -66,10 +66,10 @@ if [ $CONTINUESETUP = 1 ]; then
     exit 0
 fi
 
-THEAIRTRAFFICUSERNAME=$(whiptail --backtitle "$BACKTITLETEXT" --title "TheAirTraffic User Name" --nocancel --inputbox "Please enter your TheAirTraffic user name.\n\nIf you have more than one receiver, this username should be unique.\nExample: \"username-01\", \"username-02\", etc." 11 78 3>&1 1>&2 2>&3)
-RECEIVERLATITUDE=$(whiptail --backtitle "$BACKTITLETEXT" --title "Receiver Latitude" --nocancel --inputbox "Enter your receivers latitude." 8 78 3>&1 1>&2 2>&3)
-RECEIVERLONGITUDE=$(whiptail --backtitle "$BACKTITLETEXT" --title "Receiver Longitude" --nocancel --inputbox "Enter your recivers longitude." 8 78 3>&1 1>&2 2>&3)
-RECEIVERALTITUDE=$(whiptail --backtitle "$BACKTITLETEXT" --title "Receiver Longitude" --nocancel --inputbox "Enter your recivers atitude." 8 78 "`curl -s https://maps.googleapis.com/maps/api/elevation/json?locations=$RECEIVERLATITUDE,$RECEIVERLONGITUDE | python -c "import json,sys;obj=json.load(sys.stdin);print obj['results'][0]['elevation'];"`" 3>&1 1>&2 2>&3)
+THEAIRTRAFFICUSERNAME=$(whiptail --backtitle "$BACKTITLETEXT" --title "TheAirTraffic User Name" --nocancel --inputbox "\nPlease enter your TheAirTraffic user name.\n\nIf you have more than one receiver, this username should be unique.\nExample: \"username-01\", \"username-02\", etc." 12 78 3>&1 1>&2 2>&3)
+RECEIVERLATITUDE=$(whiptail --backtitle "$BACKTITLETEXT" --title "Receiver Latitude" --nocancel --inputbox "\nEnter your receivers latitude." 9 78 3>&1 1>&2 2>&3)
+RECEIVERLONGITUDE=$(whiptail --backtitle "$BACKTITLETEXT" --title "Receiver Longitude" --nocancel --inputbox "\nEnter your recivers longitude." 9 78 3>&1 1>&2 2>&3)
+RECEIVERALTITUDE=$(whiptail --backtitle "$BACKTITLETEXT" --title "Receiver Longitude" --nocancel --inputbox "\nEnter your recivers atitude." 9 78 "`curl -s https://maps.googleapis.com/maps/api/elevation/json?locations=$RECEIVERLATITUDE,$RECEIVERLONGITUDE | python -c "import json,sys;obj=json.load(sys.stdin);print obj['results'][0]['elevation'];"`" 3>&1 1>&2 2>&3)
 
 whiptail --backtitle "$BACKTITLETEXT" --title "$BACKTITLETEXT" --yesno "We are now ready to begin setting up your receiver to feed TheAirTraffic.\n\nDo you wish to proceed?" 9 78
 CONTINUESETUP=$?
@@ -256,11 +256,11 @@ EOF
     echo 100
     sleep 0.25
 
-} | whiptail --backtitle "$BACKTITLETEXT" --title "Setting Up TheAirTraffic Feed"  --gauge "\nSetting up your receiver to feed TheAirTraffic.\n\nThis may take some time depending on how many packages need to be installed..." 9 75 0
+} | whiptail --backtitle "$BACKTITLETEXT" --title "Setting Up TheAirTraffic Feed"  --gauge "\nSetting up your receiver to feed TheAirTraffic.\nThe setup process may take awhile to complete..." 8 60 0
 
 ## SETUP COMPLETE
 
 # Display the thank you message box.
-whiptail --title "TheAirTraffic Setup Script" --msgbox "Setup is now complete.\n\nYour feeder should now be feeding data to TheAirTraffic.\nThanks again for choosing to share your data with TheAirTraffic!\n\nIf you have questions or encountered any issues while using this script feel free to post them to one of the following places.\n\nhttps://github.com/jprochazka/TheAirTraffic\nhttp://www.theairtraffic.com/forums/topic/TheAirTraffic-setup-script/" 16 73
+whiptail --title "TheAirTraffic Setup Script" --msgbox "\nSetup is now complete.\n\nYour feeder should now be feeding data to TheAirTraffic.\nThanks again for choosing to share your data with TheAirTraffic!\n\nIf you have questions or encountered any issues while using this script feel free to post them to one of the following places.\n\nhttps://github.com/jprochazka/TheAirTraffic\nhttp://www.theairtraffic.com/forums/topic/TheAirTraffic-setup-script/" 17 73
 
 exit 0
