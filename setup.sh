@@ -205,7 +205,7 @@ EOF
     sleep 0.25
 
     # Execute the mlat-client maintenance script.
-    sudo $PWD/theairtraffic-mlat_maint.sh > /dev/null & >> $LOGFILE
+    sudo nohup $PWD/theairtraffic-mlat_maint.sh > /dev/null 2>&1 & >> $LOGFILE
 
     echo 70
     sleep 0.25
@@ -251,8 +251,7 @@ EOF
     sleep 0.25
 
     # Execute the netcat maintenance script.
-    sudo $PWD/theairtraffic-netcat_maint.sh > /dev/null &
-
+    sudo nohup $PWD/theairtraffic-netcat_maint.sh > /dev/null 2>&1 & >> $LOGFILE
     echo 100
     sleep 0.25
 
