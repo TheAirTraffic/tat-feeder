@@ -20,5 +20,5 @@ The script creates two files, one named theairtraffic-mlat_maint.sh and another 
 
 Feel free to report any issues you encounter to one of the following locations:
 
-https://www.adsbreceiver.net/forums/forum/TheAirTraffic-setup-scripts/  
+http://adsbreceiver.net/forum/cat/TheAirTraffic-setup-script/ 
 https://github.com/jprochazka/TheAirTraffic_setup/issues  
