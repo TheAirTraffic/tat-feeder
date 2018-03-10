@@ -7,7 +7,7 @@ These scripts aid in setting up your current ADS-B receiver to feed TheAirTraffi
 Running the following commands will download the contents of this repository and begin setup.
 
     sudo apt-get install git
-    git clone https://github.com/jprochazka/TheAirTraffic.git
+    git clone https://github.com/theairtraffic/TheAirTraffic.git
     cd TheAirTraffic
     chmod +x setup.sh
     sudo ./setup.sh
