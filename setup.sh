@@ -225,7 +225,10 @@ while true
   do
     sleep 30
     #/bin/nc 127.0.0.1 30005 | /bin/nc feed.theairtraffic.com $RECEIVERPORT
-    /usr/bin/socat -u TCP:localhost:30005 TCP:feed.theairtraffic.com:$RECEIVERPORT
+    if ping -q -c 1 -W 1 feed.theairtraffic.com >/dev/null 2>&1
+        then
+            /usr/bin/socat -u TCP:localhost:30005 TCP:feed.theairtraffic.com:$RECEIVERPORT
+    fi
   done
 EOF
 
