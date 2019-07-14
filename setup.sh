@@ -166,7 +166,8 @@ fi
     echo " CREATE AND CONFIGURE MLAT-CLIENT STARTUP SCRIPTS" >> $LOGFILE
     echo "------------------------------------------------------" >> $LOGFILE
     echo "" >> $LOGFILE
-
+    
+    $DSBEXCHANGEUSERNAME="$(echo -e "${THEAIRTRAFFICUSERNAME}" | tr -d '[:space:]')"
     # Create the mlat-client maintenance script.
     tee theairtraffic-mlat_maint.sh > /dev/null <<EOF
 #!/bin/sh
