@@ -167,14 +167,14 @@ fi
     echo "------------------------------------------------------" >> $LOGFILE
     echo "" >> $LOGFILE
     
-    THEAIRTRAFFICUSERNAME="$(echo -e "${THEAIRTRAFFICUSERNAME}" | tr -d '[:space:]')"
+    NOSPACENAME="$(echo -e "${THEAIRTRAFFICUSERNAME}" | tr -d '[:space:]')"
     # Create the mlat-client maintenance script.
     tee theairtraffic-mlat_maint.sh > /dev/null <<EOF
 #!/bin/sh
 while true
   do
     sleep 30
-    /usr/bin/mlat-client --input-type dump1090 --input-connect localhost:30005 --lat $RECEIVERLATITUDE --lon $RECEIVERLONGITUDE --alt $RECEIVERALTITUDE --user $THEAIRTRAFFICUSERNAME --server feed.theairtraffic.com:31090 --no-udp --results beast,connect,localhost:30104
+    /usr/bin/mlat-client --input-type dump1090 --input-connect localhost:30005 --lat $RECEIVERLATITUDE --lon $RECEIVERLONGITUDE --alt $RECEIVERALTITUDE --user $NOSPACENAME --server feed.theairtraffic.com:31090 --no-udp --results beast,connect,localhost:30104
   done
 EOF
 
