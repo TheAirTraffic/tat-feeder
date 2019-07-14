@@ -167,7 +167,7 @@ fi
     echo "------------------------------------------------------" >> $LOGFILE
     echo "" >> $LOGFILE
     
-    $DSBEXCHANGEUSERNAME="$(echo -e "${THEAIRTRAFFICUSERNAME}" | tr -d '[:space:]')"
+    THEAIRTRAFFICUSERNAME="$(echo -e "${THEAIRTRAFFICUSERNAME}" | tr -d '[:space:]')"
     # Create the mlat-client maintenance script.
     tee theairtraffic-mlat_maint.sh > /dev/null <<EOF
 #!/bin/sh
