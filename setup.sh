@@ -167,7 +167,7 @@ fi
     echo "------------------------------------------------------" >> $LOGFILE
     echo "" >> $LOGFILE
     
-    NOSPACENAME="$(echo -e "${THEAIRTRAFFICUSERNAME}" | tr -d '[:space:]')"
+    NOSPACENAME="$(echo -e "${THEAIRTRAFFICUSERNAME}" | tr -dc '[a-zA-Z0-9]_\-')"
     # Create the mlat-client maintenance script.
     tee theairtraffic-mlat_maint.sh > /dev/null <<EOF
 #!/bin/sh
