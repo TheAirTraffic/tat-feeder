@@ -287,6 +287,6 @@ EOF
 ## SETUP COMPLETE
 
 # Display the thank you message box.
-whiptail --title "TheAirTraffic Setup Script" --msgbox "\nSetup is now complete.\n\nYour feeder should now be feeding data to TheAirTraffic.\nThanks again for choosing to share your data with TheAirTraffic!\n\nIf you have questions or encountered any issues while using this script feel free to post them to one of the following places.\n\nhttps://github.com/jprochazka/TheAirTraffic\nhttp://www.theairtraffic.com/forums/topic/TheAirTraffic-setup-script/" 17 73
+whiptail --title "TheAirTraffic Setup Script" --msgbox "\nSetup is now complete.\n\nYour feeder should now be feeding data to TheAirTraffic.\nThanks again for choosing to share your data with TheAirTraffic!\n\nIf you have questions or encountered any issues while using this script feel free to post them to one of the following places.\n\nhttp://www.theairtraffic.com/forums/topic/TheAirTraffic-setup-script/" 17 73
 
 exit 0
