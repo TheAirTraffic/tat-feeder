@@ -184,7 +184,7 @@ fi
     NOSPACENAME="$(echo -e "${THEAIRTRAFFICUSERNAME}" | tr -dc '[a-zA-Z0-9]_\-')"
     # Create the mlat-client maintenance script.
     tee theairtraffic-mlat_maint.sh > /dev/null <<EOF
-#!/bin/sh
+#!/bin/bash
 while true
   do
     sleep 30
@@ -235,7 +235,7 @@ EOF
 
     # Create the netcat maintenance script.
     tee theairtraffic-netcat_maint.sh > /dev/null <<EOF
-#!/bin/sh
+#!/bin/bash
 while true
   do
     sleep 30
