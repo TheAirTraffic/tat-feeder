@@ -233,39 +233,33 @@ EOF
 
     # SETUP NETCAT TO SEND DUMP1090 DATA TO THEAIRTRAFFIC
 
-    # Create the netcat maintenance script.
-    tee theairtraffic-netcat_maint.sh > /dev/null <<EOF
-#!/bin/bash
-while true
-  do
-    sleep 30
-    #/bin/nc 127.0.0.1 30005 | /bin/nc feed.theairtraffic.com $RECEIVERPORT
-    if ping -q -c 1 -W 1 feed.theairtraffic.com >/dev/null 2>&1
-        then
-            socat -u TCP:localhost:30005 TCP:feed.theairtraffic.com:$RECEIVERPORT
-    fi
-  done
-EOF
+    sudo mkdir -p /usr/local/bin
+    sudo cp $PWD/scripts/theairtraffic-feed.sh /usr/local/bin
+    sudo cp $PWD/scripts/theairtraffic-feed.service /lib/systemd/system
+
+    sudo tee /etc/default/theairtraffic > /dev/null <<EOF
+    RECEIVERPORT=$RECEIVERPORT
+    EOF
 
     echo 76
     sleep 0.25
 
-    # Set permissions on the file theairtraffic-netcat_maint.sh.
-    chmod +x theairtraffic-netcat_maint.sh >> $LOGFILE
+    # Set permissions on the file theairtraffic-feed.sh.
+    sudo chmod +x /usr/local/bin/theairtraffic-feed.sh >> $LOGFILE
 
     echo 82
     sleep 0.25
 
-    # Add a line to execute the netcat maintenance script to /etc/rc.local so it is started after each reboot if one does not already exist.
-    if ! grep -Fxq "$PWD/theairtraffic-netcat_maint.sh &" /etc/rc.local; then
-        lnum=($(sed -n '/exit 0/=' /etc/rc.local))
-        ((lnum>0)) && sudo sed -i "${lnum[$((${#lnum[@]}-1))]}i $PWD/theairtraffic-netcat_maint.sh &\n" /etc/rc.local >> $LOGFILE
-    fi
+    # Remove old method of starting the feed script if present from rc.local
+    sudo sed -i -e '/theairtraffic-netcat_maint.sh/d' /etc/rc.local
+
+    # Enable theairtraffic-feed service
+    sudo systemctl enable theairtraffic-feed
 
     echo 88
     sleep 0.25
 
-    # Kill any currently running instances of the theairtraffic-netcat_maint.sh script.
+    # Kill the old theairtraffic-netcat_maint.sh script in case it's still running from a previous install
     PIDS=`ps -efww | grep -w "theairtraffic-netcat_maint.sh" | awk -vpid=$$ '$2 != pid { print $2 }'`
     if [ ! -z "$PIDS" ]; then
         sudo kill $PIDS >> $LOGFILE
@@ -275,10 +269,13 @@ EOF
     echo 94
     sleep 0.25
 
-    # Execute the netcat maintenance script.
-    sudo nohup $PWD/theairtraffic-netcat_maint.sh > /dev/null 2>&1 & >> $LOGFILE
     # reload systemd daemons
     sudo systemctl daemon-reload
+
+    # Start or restart theairtraffic-feed service
+    sudo systemctl restart theairtraffic-feed
+
+
     echo 100
     sleep 0.25
 
