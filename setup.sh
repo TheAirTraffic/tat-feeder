@@ -239,7 +239,7 @@ EOF
 
     sudo tee /etc/default/theairtraffic > /dev/null <<EOF
     RECEIVERPORT=$RECEIVERPORT
-    EOF
+EOF
 
     echo 76
     sleep 0.25
