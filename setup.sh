@@ -171,7 +171,7 @@ fi
     # Build and install the mlat-client package.
     dpkg-buildpackage -b -uc >> $LOGFILE 2>&1
     cd .. >> $LOGFILE
-    sudo dpkg -i mlat-client_${MLATCLIENTVERSION}*.deb >> $LOGFILE
+    sudo dpkg -i mlat-client_${MLATCLIENTVERSION}*.deb >> $LOGFILE 2>&1
 
     echo 40
     sleep 0.25
@@ -182,63 +182,62 @@ fi
     echo "" >> $LOGFILE
     
     NOSPACENAME="$(echo -e "${THEAIRTRAFFICUSERNAME}" | tr -dc '[a-zA-Z0-9]_\-')"
-    # Create the mlat-client maintenance script.
-    tee theairtraffic-mlat_maint.sh > /dev/null <<EOF
-#!/bin/bash
-while true
-  do
-    sleep 30
-    /usr/bin/mlat-client --input-type dump1090 --input-connect localhost:30005 --lat $RECEIVERLATITUDE --lon $RECEIVERLONGITUDE --alt $RECEIVERALTITUDE --user $NOSPACENAME --server feed.theairtraffic.com:31090 --no-udp --results beast,connect,localhost:30104
-  done
-EOF
 
     echo 46
     sleep 0.25
 
-    # Set execute permissions on the mlat-client maintenance script.
-    chmod +x theairtraffic-mlat_maint.sh >> $LOGFILE
-
-    echo 52
-    sleep 0.25
-
-    # Add a line to execute the mlat-client maintenance script to /etc/rc.local so it is started after each reboot if one does not already exist.
-    if ! grep -Fxq "$PWD/theairtraffic-mlat_maint.sh &" /etc/rc.local; then
-        LINENUMBER=($(sed -n '/exit 0/=' /etc/rc.local))
-        ((LINENUMBER>0)) && sudo sed -i "${LINENUMBER[$((${#LINENUMBER[@]}-1))]}i $PWD/theairtraffic-mlat_maint.sh &\n" /etc/rc.local >> $LOGFILE
-    fi
+    # Remove old method of starting the feed script if present from rc.local
+    sudo sed -i -e '/theairtraffic-mlat_maint.sh/d' /etc/rc.local >> $LOGFILE 2>&1
 
     echo 58
     sleep 0.25
 
-    echo "" >> $LOGFILE
-    echo " CREATE AND CONFIGURE NETCAT STARTUP SCRIPTS" >> $LOGFILE
-    echo "-------------------------------------------------" >> $LOGFILE
-    echo "" >> $LOGFILE
 
-    # Kill any currently running instances of the theairtraffic-mlat_maint.sh script.
+    # Kill the old theairtraffic-mlat_maint.sh script in case it's still running from a previous install
     PIDS=`ps -efww | grep -w "theairtraffic-mlat_maint.sh" | awk -vpid=$$ '$2 != pid { print $2 }'`
     if [ ! -z "$PIDS" ]; then
-        sudo kill $PIDS >> $LOGFILE
-        sudo kill -9 $PIDS >> $LOGFILE
+        sudo kill $PIDS >> $LOGFILE 2>&1
+        sudo kill -9 $PIDS >> $LOGFILE 2>&1
     fi
 
     echo 64
     sleep 0.25
 
-    # Execute the mlat-client maintenance script.
-    sudo nohup $PWD/theairtraffic-mlat_maint.sh > /dev/null 2>&1 & >> $LOGFILE
+    # copy theairtraffic-mlat service file
+    sudo cp $PWD/scripts/theairtraffic-mlat.service /lib/systemd/system >> $LOGFILE 2>&1
+
+    # reload systemd daemons
+    sudo systemctl daemon-reload
+
+    # Enable theairtraffic-mlat service
+    sudo systemctl enable theairtraffic-mlat >> $LOGFILE 2>&1
+
+    # Start or restart theairtraffic-mlat service
+    sudo systemctl restart theairtraffic-mlat >> $LOGFILE 2>&1
+
 
     echo 70
     sleep 0.25
 
     # SETUP NETCAT TO SEND DUMP1090 DATA TO THEAIRTRAFFIC
 
+    echo "" >> $LOGFILE
+    echo " CREATE AND CONFIGURE NETCAT STARTUP SCRIPTS" >> $LOGFILE
+    echo "-------------------------------------------------" >> $LOGFILE
+    echo "" >> $LOGFILE
+
     sudo mkdir -p /usr/local/bin
     sudo cp $PWD/scripts/theairtraffic-feed.sh /usr/local/bin
     sudo cp $PWD/scripts/theairtraffic-feed.service /lib/systemd/system
 
     sudo tee /etc/default/theairtraffic > /dev/null <<EOF
-    RECEIVERPORT=$RECEIVERPORT
+    RECEIVERPORT="$RECEIVERPORT"
+    USER="$NOSPACENAME"
+    RECEIVERLATITUDE="$RECEIVERLATITUDE"
+    RECEIVERLONGITUDE="$RECEIVERLONGITUDE"
+    RECEIVERALTITUDE="$RECEIVERALTITUDE"
+    RESULTS="beast,connect,localhost:30104"
+    MLATSERVER="feed.theairtraffic.com:31090"
 EOF
 
     echo 76
@@ -251,10 +250,10 @@ EOF
     sleep 0.25
 
     # Remove old method of starting the feed script if present from rc.local
-    sudo sed -i -e '/theairtraffic-netcat_maint.sh/d' /etc/rc.local
+    sudo sed -i -e '/theairtraffic-netcat_maint.sh/d' /etc/rc.local >> $LOGFILE 2>&1
 
     # Enable theairtraffic-feed service
-    sudo systemctl enable theairtraffic-feed
+    sudo systemctl enable theairtraffic-feed  >> $LOGFILE 2>&1
 
     echo 88
     sleep 0.25
@@ -262,8 +261,8 @@ EOF
     # Kill the old theairtraffic-netcat_maint.sh script in case it's still running from a previous install
     PIDS=`ps -efww | grep -w "theairtraffic-netcat_maint.sh" | awk -vpid=$$ '$2 != pid { print $2 }'`
     if [ ! -z "$PIDS" ]; then
-        sudo kill $PIDS >> $LOGFILE
-        sudo kill -9 $PIDS >> $LOGFILE
+        sudo kill $PIDS >> $LOGFILE 2>&1
+        sudo kill -9 $PIDS >> $LOGFILE 2>&1
     fi
 
     echo 94
@@ -273,7 +272,7 @@ EOF
     sudo systemctl daemon-reload
 
     # Start or restart theairtraffic-feed service
-    sudo systemctl restart theairtraffic-feed
+    sudo systemctl restart theairtraffic-feed  >> $LOGFILE 2>&1
 
 
     echo 100
