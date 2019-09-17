@@ -212,10 +212,6 @@ fi
     # Enable theairtraffic-mlat service
     sudo systemctl enable theairtraffic-mlat >> $LOGFILE 2>&1
 
-    # Start or restart theairtraffic-mlat service
-    sudo systemctl restart theairtraffic-mlat >> $LOGFILE 2>&1
-
-
     echo 70
     sleep 0.25
 
@@ -275,6 +271,8 @@ EOF
     # Start or restart theairtraffic-feed service
     sudo systemctl restart theairtraffic-feed  >> $LOGFILE 2>&1
 
+    # Start or restart theairtraffic-mlat service
+    sudo systemctl restart theairtraffic-mlat >> $LOGFILE 2>&1
 
     echo 100
     sleep 0.25
