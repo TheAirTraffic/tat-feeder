@@ -23,10 +23,12 @@ cat /etc/default/theairtraffic
 ### Systemd Status
 
 systemctl status theairtraffic-mlat
+
 systemctl status theairtraffic-feed
 
 ### Restart
 
 sudo systemctl restart theairtraffic-feed
+
 sudo systemctl restart theairtraffic-mlat
 
