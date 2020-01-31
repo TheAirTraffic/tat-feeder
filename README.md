@@ -17,18 +17,27 @@ Running the following commands will download the contents of this repository and
 ### Checking status
 
 ### Display MLAT config
-
+```
 cat /etc/default/theairtraffic
+```
 
 ### Systemd Status
-
+```
 sudo systemctl status theairtraffic-mlat
 
 sudo systemctl status theairtraffic-feed
+```
 
 ### Restart
-
+```
 sudo systemctl restart theairtraffic-feed
 
 sudo systemctl restart theairtraffic-mlat
+```
 
+### If you encounter issues, please supply these logs on the forum (last 20 lines for each is sufficient):
+
+```
+sudo journalctl -u theairtraffic-feed --no-pager
+sudo journalctl -u theairtraffic-mlat --no-pager
+```
