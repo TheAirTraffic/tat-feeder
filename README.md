@@ -4,7 +4,11 @@ These scripts aid in setting up your current ADS-B receiver to feed TheAirTraffi
 
 ### Obtaining And Using The Scripts
 
-Running the following commands will download the contents of this repository and begin setup.
+```
+sudo bash -c "$(wget -nv -O - https://raw.githubusercontent.com/theairtraffic/TheAirTraffic/master/install.sh)"
+```
+
+Alternatively running the following commands will download the contents of this repository and begin setup.
 
     sudo apt-get install git
     git clone https://github.com/theairtraffic/TheAirTraffic.git
@@ -40,4 +44,11 @@ sudo systemctl restart theairtraffic-mlat
 ```
 sudo journalctl -u theairtraffic-feed --no-pager
 sudo journalctl -u theairtraffic-mlat --no-pager
+```
+
+### Removal / disabling the services:
+
+```
+sudo systemctl disable --now theairtraffic-feed
+sudo systemctl disable --now theairtraffic-mlat
 ```
