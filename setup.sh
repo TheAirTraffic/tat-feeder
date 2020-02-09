@@ -60,8 +60,8 @@ echo "Checking for packages needed to run this script..."
 if [ $(dpkg-query -W -f='${STATUS}' curl 2>/dev/null | grep -c "ok installed") -eq 0 ]; then
     echo "Installing the curl package..."
     echo -e "\033[37m"
-    sudo apt-get update
-    sudo apt-get install -y curl
+    apt-get update
+    apt-get install -y curl
 fi
 echo -e "\033[37m"
 
@@ -146,7 +146,7 @@ fi
 	for package in $required_packages
 	do
 		if [ $(dpkg-query -W -f='${STATUS}' $package 2>/dev/null | grep -c "ok installed") -eq 0 ]; then
-			sudo apt-get install -y $package >> $LOGFILE  2>&1
+			apt-get install -y $package >> $LOGFILE  2>&1
 		fi
 		progress=$((progress+4))
 		echo $progress
@@ -186,7 +186,7 @@ fi
     echo 44
 
     cd .. >> $LOGFILE
-    sudo dpkg -i mlat-client_${MLATCLIENTVERSION}*.deb >> $LOGFILE 2>&1
+    dpkg -i mlat-client_${MLATCLIENTVERSION}*.deb >> $LOGFILE 2>&1
 
     cd $CURRENT_DIR
 
@@ -201,7 +201,7 @@ fi
     NOSPACENAME="$(echo -e "${THEAIRTRAFFICUSERNAME}" | tr -dc '[a-zA-Z0-9]_\-')"
 
     # Remove old method of starting the feed script if present from rc.local
-    sudo sed -i -e '/theairtraffic-mlat_maint.sh/d' /etc/rc.local >> $LOGFILE 2>&1
+    sed -i -e '/theairtraffic-mlat_maint.sh/d' /etc/rc.local >> $LOGFILE 2>&1
 
     echo 58
     sleep 0.25
@@ -211,21 +211,21 @@ fi
     pkill theairtraffic-mlat_maint.sh
     PIDS=`ps -efww | grep -w "theairtraffic-mlat_maint.sh" | awk -vpid=$$ '$2 != pid { print $2 }'`
     if [ ! -z "$PIDS" ]; then
-        sudo kill $PIDS >> $LOGFILE 2>&1
-        sudo kill -9 $PIDS >> $LOGFILE 2>&1
+        kill $PIDS >> $LOGFILE 2>&1
+        kill -9 $PIDS >> $LOGFILE 2>&1
     fi
 
     echo 64
     sleep 0.25
 
     # copy theairtraffic-mlat service file
-    sudo cp $PWD/scripts/theairtraffic-mlat.service /lib/systemd/system >> $LOGFILE 2>&1
+    cp $PWD/scripts/theairtraffic-mlat.service /lib/systemd/system >> $LOGFILE 2>&1
 
     # reload systemd daemons
-    sudo systemctl daemon-reload
+    systemctl daemon-reload
 
     # Enable theairtraffic-mlat service
-    sudo systemctl enable theairtraffic-mlat >> $LOGFILE 2>&1
+    systemctl enable theairtraffic-mlat >> $LOGFILE 2>&1
 
     echo 70
     sleep 0.25
@@ -237,11 +237,11 @@ fi
     echo "-------------------------------------------------" >> $LOGFILE
     echo "" >> $LOGFILE
 
-    sudo mkdir -p /usr/local/bin
-    sudo cp $PWD/scripts/theairtraffic-feed.sh /usr/local/bin
-    sudo cp $PWD/scripts/theairtraffic-feed.service /lib/systemd/system
+    mkdir -p /usr/local/bin
+    cp $PWD/scripts/theairtraffic-feed.sh /usr/local/bin
+    cp $PWD/scripts/theairtraffic-feed.service /lib/systemd/system
 
-    sudo tee /etc/default/theairtraffic > /dev/null <<EOF
+    tee /etc/default/theairtraffic > /dev/null <<EOF
     INPUT="127.0.0.1:30005"
     USER="${NOSPACENAME}_$((RANDOM % 90 + 10))"
     RECEIVERLATITUDE="$RECEIVERLATITUDE"
@@ -257,16 +257,16 @@ EOF
     sleep 0.25
 
     # Set permissions on the file theairtraffic-feed.sh.
-    sudo chmod +x /usr/local/bin/theairtraffic-feed.sh >> $LOGFILE
+    chmod +x /usr/local/bin/theairtraffic-feed.sh >> $LOGFILE
 
     echo 82
     sleep 0.25
 
     # Remove old method of starting the feed script if present from rc.local
-    sudo sed -i -e '/theairtraffic-netcat_maint.sh/d' /etc/rc.local >> $LOGFILE 2>&1
+    sed -i -e '/theairtraffic-netcat_maint.sh/d' /etc/rc.local >> $LOGFILE 2>&1
 
     # Enable theairtraffic-feed service
-    sudo systemctl enable theairtraffic-feed  >> $LOGFILE 2>&1
+    systemctl enable theairtraffic-feed  >> $LOGFILE 2>&1
 
     echo 88
     sleep 0.25
@@ -275,8 +275,8 @@ EOF
     pkill theairtraffic-netcat_maint.sh
     PIDS=`ps -efww | grep -w "theairtraffic-netcat_maint.sh" | awk -vpid=$$ '$2 != pid { print $2 }'`
     if [ ! -z "$PIDS" ]; then
-        sudo kill $PIDS >> $LOGFILE 2>&1
-        sudo kill -9 $PIDS >> $LOGFILE 2>&1
+        kill $PIDS >> $LOGFILE 2>&1
+        kill -9 $PIDS >> $LOGFILE 2>&1
     fi
 
     echo 94
@@ -287,13 +287,13 @@ EOF
     pkill -f feed.theairtraffic.com:30005
 
     # reload systemd daemons
-    sudo systemctl daemon-reload
+    systemctl daemon-reload
 
     # Start or restart theairtraffic-feed service
-    sudo systemctl restart theairtraffic-feed  >> $LOGFILE 2>&1
+    systemctl restart theairtraffic-feed  >> $LOGFILE 2>&1
 
     # Start or restart theairtraffic-mlat service
-    sudo systemctl restart theairtraffic-mlat >> $LOGFILE 2>&1
+    systemctl restart theairtraffic-mlat >> $LOGFILE 2>&1
 
     echo 100
     sleep 0.25
