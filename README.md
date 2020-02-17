@@ -55,4 +55,7 @@ sudo systemctl status theairtraffic-feed
 ```
 sudo systemctl disable --now theairtraffic-feed
 sudo systemctl disable --now theairtraffic-mlat
+
+
+--tat-git-discord
 ```
