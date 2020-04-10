@@ -14,6 +14,7 @@ do
 		echo Connected to feed.theairtraffic.com:30005
 		
 		/usr/local/share/feed-tat --net --net-only --quiet \
+		--write-json /run/theairtraffic-feed \
 		--net-beast-reduce-interval $REDUCE_INTERVAL \
 		$TARGET $NET_OPTIONS $SOURCE
 		
