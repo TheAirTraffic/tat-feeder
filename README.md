@@ -53,9 +53,12 @@ sudo systemctl status theairtraffic-feed
 ### Removal / disabling the services:
 
 ```
+sudo bash -c $(cat /usr/local/share/theairtraffic/uninstall.sh)
+```
+
+If the above doesn't work, you may be using an old version that didn't have the uninstall script, just disable the services and the scripts won't run anymore:
+
+```
 sudo systemctl disable --now theairtraffic-feed
 sudo systemctl disable --now theairtraffic-mlat
-
-
---tat-git-discord
 ```
