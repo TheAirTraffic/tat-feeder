@@ -125,6 +125,11 @@ fi
     LOGFILE="$LOGDIRECTORY/image_setup-$(date +%F_%R)"
     touch $LOGFILE
 
+    if ! id -u theairtraffic &>/dev/null
+    then
+        adduser --system --home $IPATH --no-create-home --quiet theairtraffic >> $LOGFILE  2>&1
+    fi
+
     echo 4
     sleep 0.25
 
@@ -316,11 +321,15 @@ EOF
     # Start or restart theairtraffic-feed service
     systemctl restart theairtraffic-feed  >> $LOGFILE 2>&1
 
+    echo 96
+
     # Start or restart theairtraffic-mlat service
     systemctl restart theairtraffic-mlat >> $LOGFILE 2>&1
 
     echo 100
     sleep 0.25
+
+    cp $LOGFILE $IPATH/lastlog &>/dev/null
 
 } | whiptail --backtitle "$BACKTITLETEXT" --title "Setting Up TheAirTraffic Feed"  --gauge "\nSetting up your receiver to feed TheAirTraffic.\nThe setup process may take awhile to complete..." 8 60 0
 
