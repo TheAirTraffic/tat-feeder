@@ -7,7 +7,7 @@ After=network.target
 [Service]
 EnvironmentFile=/etc/default/theairtraffic
 RuntimeDirectory=theairtraffic-feed
-ExecStart=/usr/local/bin/theairtraffic-feed.sh
+ExecStart=/usr/local/share/theairtraffic/theairtraffic-feed.sh
 Type=simple
 Restart=on-failure
 RestartSec=30
