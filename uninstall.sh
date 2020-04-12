@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x
 
 IPATH=/usr/local/share/theairtraffic
 
@@ -9,3 +10,8 @@ rm -f /lib/systemd/system/theairtraffic-mlat.service
 rm -f /lib/systemd/system/theairtraffic-feed.service
 
 rm -rf "$IPATH"
+
+set +x
+
+echo -----
+echo "theairtraffic feed scripts have been uninstalled!"
