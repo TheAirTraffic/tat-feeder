@@ -7,15 +7,7 @@ After=network.target
 [Service]
 User=theairtraffic
 EnvironmentFile=/etc/default/theairtraffic
-ExecStart=/usr/local/share/theairtraffic/venv/bin/python3 /usr/local/share/theairtraffic/venv/bin/mlat-client \
-	--input-type $INPUT_TYPE --no-udp \
-	--input-connect $INPUT \
-	--server $MLATSERVER \
-	--user $USER \
-	--lat $RECEIVERLATITUDE \
-	--lon $RECEIVERLONGITUDE \
-	--alt $RECEIVERALTITUDE \
-	$RESULTS
+ExecStart=/usr/local/share/theairtraffic/theairtraffic-mlat.sh
 Type=simple
 Restart=always
 RestartSec=30
