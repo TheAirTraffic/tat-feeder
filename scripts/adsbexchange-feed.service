@@ -6,7 +6,6 @@ After=network.target
 
 [Service]
 User=theairtraffic
-EnvironmentFile=/etc/default/theairtraffic
 RuntimeDirectory=theairtraffic-feed
 ExecStart=/usr/local/share/theairtraffic/theairtraffic-feed.sh
 Type=simple

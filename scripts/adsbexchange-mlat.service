@@ -6,7 +6,6 @@ After=network.target
 
 [Service]
 User=theairtraffic
-EnvironmentFile=/etc/default/theairtraffic
 ExecStart=/usr/local/share/theairtraffic/theairtraffic-mlat.sh
 Type=simple
 Restart=always
