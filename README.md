@@ -7,7 +7,8 @@ These scripts aid in setting up your current ADS-B receiver to feed TheAirTraffi
 Use this command to start the setup process:
 
 ```
-sudo bash -c "$(wget -nv -O - https://raw.githubusercontent.com/theairtraffic/TheAirTraffic/master/install.sh)"
+curl -o /tmp/feed.sh https://raw.githubusercontent.com/theairtraffic/TheAirTraffic/master/install.sh
+sudo bash /tmp/feed.sh
 ```
 
 ### Checking status
