@@ -19,7 +19,6 @@ done
 
 /usr/local/share/theairtraffic/feed-tat --net --net-only --debug=n --quiet \
     --write-json /run/theairtraffic-feed \
-    --net-bi-port 30154 \
     --net-beast-reduce-interval $REDUCE_INTERVAL \
     $TARGET $NET_OPTIONS $SOURCE $MLAT_IN \
     --lat "$LATITUDE" --lon "$LONGITUDE"
