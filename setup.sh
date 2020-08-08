@@ -412,7 +412,7 @@ http://theairtraffic.com/sync
 
 If you have questions or encountered any issues while using this script feel free to post them to one of the following places:
 
-http://www.theairtraffic.com/forums/topic/TheAirTraffic-setup-script/
+https://www.theairtraffic.com/forum/threads/theairtraffic-setup-scripts.631609/
 https://discord.gg/ErEztqg
 "
 
