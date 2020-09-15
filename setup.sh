@@ -363,6 +363,9 @@ EOF
     if grep -qs -e 'theairtraffic-netcat_maint.sh' /etc/rc.local; then
         sed -i -e '/theairtraffic-netcat_maint.sh/d' /etc/rc.local >> $LOGFILE 2>&1
     fi
+    if grep -qs -e 'theairtraffic-socat_maint.sh' /etc/rc.local; then
+        sed -i -e '/theairtraffic-socat_maint.sh/d' /etc/rc.local >> $LOGFILE 2>&1
+    fi
 
     # Enable theairtraffic-feed service
     systemctl enable theairtraffic-feed  >> $LOGFILE 2>&1
@@ -372,6 +375,7 @@ EOF
 
     # Kill the old theairtraffic-netcat_maint.sh script in case it's still running from a previous install
     pkill -f theairtraffic-netcat_maint.sh &>/dev/null
+    pkill -f theairtraffic-socat_maint.sh &>/dev/null
     PIDS=`ps -efww | grep -w "theairtraffic-netcat_maint.sh" | awk -vpid=$$ '$2 != pid { print $2 }'`
     if [ ! -z "$PIDS" ]; then
         kill $PIDS &>/dev/null
