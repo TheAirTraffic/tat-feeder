@@ -253,19 +253,6 @@ fi
 
     NOSPACENAME="$(echo -n -e "${THEAIRTRAFFICUSERNAME}" | tr -c '[a-zA-Z0-9]_\- ' '_')"
 
-    # Remove old method of starting the feed script if present from rc.local
-    if grep -qs -e 'theairtraffic-mlat_maint.sh' /etc/rc.local; then
-        sed -i -e '/theairtraffic-mlat_maint.sh/d' /etc/rc.local >> $LOGFILE 2>&1
-    fi
-
-    # Kill the old theairtraffic-mlat_maint.sh script in case it's still running from a previous install
-    pkill -f theairtraffic-mlat_maint.sh &>/dev/null
-    PIDS=`ps -efww | grep -w "theairtraffic-mlat_maint.sh" | awk -vpid=$$ '$2 != pid { print $2 }'`
-    if [ ! -z "$PIDS" ]; then
-        kill $PIDS &>/dev/null
-        kill -9 $PIDS &>/dev/null
-    fi
-
     echo 64
     sleep 0.25
 
@@ -358,28 +345,25 @@ EOF
     echo 82
     sleep 0.25
 
-    # Remove old method of starting the feed script if present from rc.local
-    if grep -qs -e 'theairtraffic-netcat_maint.sh' /etc/rc.local; then
-        sed -i -e '/theairtraffic-netcat_maint.sh/d' /etc/rc.local >> $LOGFILE 2>&1
-    fi
-    if grep -qs -e 'theairtraffic-socat_maint.sh' /etc/rc.local; then
-        sed -i -e '/theairtraffic-socat_maint.sh/d' /etc/rc.local >> $LOGFILE 2>&1
-    fi
-
     # Enable theairtraffic-feed service
     systemctl enable theairtraffic-feed  >> $LOGFILE 2>&1
 
     echo 88
     sleep 0.25
 
-    # Kill the old theairtraffic-netcat_maint.sh script in case it's still running from a previous install
-    pkill -f theairtraffic-netcat_maint.sh &>/dev/null
-    pkill -f theairtraffic-socat_maint.sh &>/dev/null
-    PIDS=`ps -efww | grep -w "theairtraffic-netcat_maint.sh" | awk -vpid=$$ '$2 != pid { print $2 }'`
-    if [ ! -z "$PIDS" ]; then
-        kill $PIDS &>/dev/null
-        kill -9 $PIDS &>/dev/null
-    fi
+    # Remove old method of starting the feed scripts if present from rc.local
+    # Kill the old theairtraffic scripts in case they are still running from a previous install including spawned programs
+    for name in theairtraffic-netcat_maint.sh theairtraffic-socat_maint.sh theairtraffic-mlat_maint.sh; do
+        if grep -qs -e "$name" /etc/rc.local >> $LOGFILE 2>&1; then
+            sed -i -e "/$name/d" /etc/rc.local >> $LOGFILE 2>&1
+        fi
+        PID="$(pgrep -f "$name" 2>/dev/null)"
+        PIDS="$PID $(pgrep -P $PID 2>/dev/null)"
+        if [ ! -z "$PID" ]; then
+            echo killing: $PIDS >> $LOGFILE 2>&1
+            kill -9 $PIDS >> $LOGFILE 2>&1
+        fi
+    done
 
     echo 94
     sleep 0.25
