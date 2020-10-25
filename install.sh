@@ -5,6 +5,7 @@ if ! command -v git; then
     apt-get install -y git
 fi
 rm -rf "$TMP"
+set -e
 git clone https://github.com/theairtraffic/TheAirTraffic.git "$TMP"
 cd "$TMP"
 bash setup.sh
