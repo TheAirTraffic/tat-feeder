@@ -7,8 +7,8 @@ These scripts aid in setting up your current ADS-B receiver to feed TheAirTraffi
 Use this command to start the setup process:
 
 ```
-curl -o /tmp/feed.sh https://raw.githubusercontent.com/theairtraffic/TheAirTraffic/master/install.sh
-sudo bash /tmp/feed.sh
+wget -O /tmp/axfeed.sh https://raw.githubusercontent.com/theairtraffic/TheAirTraffic/master/install.sh
+sudo bash /tmp/axfeed.sh
 ```
 
 ### Checking status
