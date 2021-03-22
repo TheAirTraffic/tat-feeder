@@ -11,18 +11,26 @@ wget -O /tmp/axfeed.sh https://raw.githubusercontent.com/theairtraffic/TheAirTra
 sudo bash /tmp/axfeed.sh
 ```
 
-### Checking status
+### Update the feed client without reconfiguring
+```
+wget -O /tmp/axupdate.sh https://raw.githubusercontent.com/theairtraffic/TheAirTraffic/master/update.sh
+sudo bash /tmp/axupdate.sh
+```
 
-### Display MLAT config
+### Display the configurtion
 ```
 cat /etc/default/theairtraffic
 ```
 
-### If you encounter issues, please supply these logs on the forum (last 20 lines for each is sufficient):
+### Changing the configuration
+
+This is the same as the initial installation.
+If the client is up to date it should not take as long as the original installation,
+otherwise this will also update the client which will take a moment.
 
 ```
-sudo journalctl -u theairtraffic-feed --no-pager
-sudo journalctl -u theairtraffic-mlat --no-pager
+wget -O /tmp/axfeed.sh https://raw.githubusercontent.com/theairtraffic/TheAirTraffic/master/install.sh
+sudo bash /tmp/axfeed.sh
 ```
 
 ### Restart
@@ -30,6 +38,13 @@ sudo journalctl -u theairtraffic-mlat --no-pager
 ```
 sudo systemctl restart theairtraffic-feed
 sudo systemctl restart theairtraffic-mlat
+```
+
+### If you encounter issues, please do a reboot and then supply these logs on the forum (last 20 lines for each is sufficient):
+
+```
+sudo journalctl -u theairtraffic-feed --no-pager
+sudo journalctl -u theairtraffic-mlat --no-pager
 ```
 
 
