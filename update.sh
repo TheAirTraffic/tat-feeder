@@ -84,7 +84,7 @@ LOGFILE="$IPATH/lastlog"
 rm -f $LOGFILE
 touch $LOGFILE
 
-cp uninstall.sh $IPATH
+cp "$IPATH/git/uninstall.sh" "$IPATH"
 
 if ! id -u theairtraffic &>/dev/null
 then
@@ -183,10 +183,9 @@ else
 fi
 
 echo 50
-cd $CURRENT_DIR
 
 # copy theairtraffic-mlat service file
-cp "$GIT"/scripts/theairtraffic-mlat.sh $IPATH
+cp "$GIT"/scripts/theairtraffic-mlat.sh "$IPATH"
 cp "$GIT"/scripts/theairtraffic-mlat.service /lib/systemd/system
 
 # Enable theairtraffic-mlat service
@@ -229,8 +228,6 @@ else
     echo
 fi
 
-# back to the working dir for install script
-cd $SCRIPT_DIR
 #end compile readsb
 
 cp "$GIT"/scripts/theairtraffic-feed.sh $IPATH
