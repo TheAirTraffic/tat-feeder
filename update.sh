@@ -87,9 +87,11 @@ touch $LOGFILE
 
 cp "$IPATH/git/uninstall.sh" "$IPATH"
 
-if ! id -u theairtraffic &>/dev/null
+USER=theairtraffic
+if ! id -u "${USER}" &>/dev/null
 then
-    adduser --system --home $IPATH --no-create-home --quiet theairtraffic
+    # 2nd syntax is for fedora / centos
+    adduser --system --home "$IPATH" --no-create-home --quiet "$USER" || adduser --system --home-dir "$IPATH" --no-create-home "$USER"
 fi
 
 echo 4
