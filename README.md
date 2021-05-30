@@ -33,6 +33,10 @@ wget -O /tmp/axfeed.sh https://raw.githubusercontent.com/theairtraffic/TheAirTra
 sudo bash /tmp/axfeed.sh
 ```
 
+### Other device as a data source (networked standalone receivers):
+
+https://github.com/theairtraffic/wiki/wiki/Datasource-other-device
+
 ### Restart
 
 ```
