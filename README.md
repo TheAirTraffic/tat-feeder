@@ -21,6 +21,14 @@ sudo bash /tmp/axupdate.sh
 - https://www.theairtraffic.com/myip
 - https://map.theairtraffic.com/mlat-map
 
+### If you encounter issues, please do a reboot and then supply these logs on the forum (last 20 lines for each is sufficient):
+
+```
+sudo journalctl -u theairtraffic-feed --no-pager
+sudo journalctl -u theairtraffic-mlat --no-pager
+```
+
+
 ### Display the configuration
 
 ```
@@ -47,13 +55,6 @@ https://github.com/theairtraffic/wiki/wiki/Datasource-other-device
 ```
 sudo systemctl restart theairtraffic-feed
 sudo systemctl restart theairtraffic-mlat
-```
-
-### If you encounter issues, please do a reboot and then supply these logs on the forum (last 20 lines for each is sufficient):
-
-```
-sudo journalctl -u theairtraffic-feed --no-pager
-sudo journalctl -u theairtraffic-mlat --no-pager
 ```
 
 
