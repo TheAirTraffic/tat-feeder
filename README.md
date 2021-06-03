@@ -16,6 +16,11 @@ wget -O /tmp/axupdate.sh https://raw.githubusercontent.com/theairtraffic/TheAirT
 sudo bash /tmp/axupdate.sh
 ```
 
+### Check these two URLs to check if your feed is working
+
+- https://www.theairtraffic.com/myip
+- https://map.theairtraffic.com/mlat-map
+
 ### Display the configuration
 
 ```
