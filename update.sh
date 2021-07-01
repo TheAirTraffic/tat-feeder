@@ -319,21 +319,19 @@ echo "---------------------"
 ## SETUP COMPLETE
 
 ENDTEXT="
-Setup is now complete.
-
-You should now be feeding data to TheAirTraffic.
-
-Thanks again for choosing to share your data with TheAirTraffic!
+Thanks for choosing to share your data with TheAirTraffic!
 
 If you're curious, check your feed status after 5 min:
 
 https://theairtraffic.com/myip/
 http://theairtraffic.com/sync
 
-If you have questions or encountered any issues while using this script feel free to post them to one of the following places:
-
+Question? Issues? Go here:
 https://www.theairtraffic.com/forum/threads/theairtraffic-setup-scripts.631609/
 https://discord.gg/n9dGbkTtZm
+
+Webinterface to show the data transmitted? Run this command:
+sudo bash /usr/local/share/theairtraffic/git/install-or-update-interface.sh
 "
 
 INPUT_IP=$(echo $INPUT | cut -d: -f1)
