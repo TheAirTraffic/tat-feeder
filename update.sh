@@ -217,11 +217,19 @@ echo 50
 # copy theairtraffic-mlat service file
 cp "$GIT"/scripts/theairtraffic-mlat.service /lib/systemd/system
 
-# Enable theairtraffic-mlat service
-systemctl enable theairtraffic-mlat
-echo 60
-# Start or restart theairtraffic-mlat service
-systemctl restart theairtraffic-mlat || true
+if ! ls -l /etc/systemd/system/theairtraffic-mlat.service 2>&1 | grep '/dev/null' &>/dev/null; then
+    # Enable theairtraffic-mlat service
+    systemctl enable theairtraffic-mlat
+    echo 60
+    # Start or restart theairtraffic-mlat service
+    systemctl restart theairtraffic-mlat || true
+else
+    echo "--------------------"
+    echo "CAUTION, theairtraffic-mlat is masked and won't run!"
+    echo "If this is unexpected for you, please report this issue"
+    echo "--------------------"
+    sleep 3
+fi
 
 echo 70
 
@@ -266,17 +274,21 @@ fi
 cp "$GIT"/scripts/theairtraffic-feed.service /lib/systemd/system
 
 echo 82
-sleep 0.25
 
-# Enable theairtraffic-feed service
-systemctl enable theairtraffic-feed
+if ! ls -l /etc/systemd/system/theairtraffic-feed.service 2>&1 | grep '/dev/null' &>/dev/null; then
+    # Enable theairtraffic-feed service
+    systemctl enable theairtraffic-feed
+    echo 92
+    # Start or restart theairtraffic-feed service
+    systemctl restart theairtraffic-feed || true
+else
+    echo "--------------------"
+    echo "CAUTION, theairtraffic-feed.service is masked and won't run!"
+    echo "If this is unexpected for you, please report this issue"
+    echo "--------------------"
+    sleep 3
+fi
 
-echo 88
-sleep 0.25
-
-echo 92
-# Start or restart theairtraffic-feed service
-systemctl restart theairtraffic-feed || true
 echo 94
 
 systemctl is-active theairtraffic-feed || {
