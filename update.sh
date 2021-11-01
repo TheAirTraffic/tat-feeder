@@ -82,7 +82,12 @@ if diff "$GIT/update.sh" "$IPATH/update.sh" &>/dev/null; then
     exit $?
 fi
 
-source /etc/default/theairtraffic
+if [ -f /boot/adsb-config.txt ]; then
+    source /boot/adsb-config.txt
+    source /boot/tat-env
+else
+    source /etc/default/theairtraffic
+fi
 if [[ -z $INPUT ]] || [[ -z $INPUT_TYPE ]] || [[ -z $USER ]] \
     || [[ -z $LATITUDE ]] || [[ -z $LONGITUDE ]] || [[ -z $ALTITUDE ]] \
     || [[ -z $MLATSERVER ]] || [[ -z $TARGET ]] || [[ -z $NET_OPTIONS ]]; then
@@ -222,18 +227,23 @@ echo 50
 # copy theairtraffic-mlat service file
 cp "$GIT"/scripts/theairtraffic-mlat.service /lib/systemd/system
 
-if ! ls -l /etc/systemd/system/theairtraffic-mlat.service 2>&1 | grep '/dev/null' &>/dev/null; then
-    # Enable theairtraffic-mlat service
-    systemctl enable theairtraffic-mlat
-    echo 60
-    # Start or restart theairtraffic-mlat service
-    systemctl restart theairtraffic-mlat || true
-else
+echo 60
+
+if ls -l /etc/systemd/system/theairtraffic-mlat.service 2>&1 | grep '/dev/null' &>/dev/null; then
     echo "--------------------"
     echo "CAUTION, theairtraffic-mlat is masked and won't run!"
     echo "If this is unexpected for you, please report this issue"
     echo "--------------------"
     sleep 3
+else
+    if [[ "$LATITUDE" == 0 ]] || [[ "$LONGITUDE" == 0 ]] || [[ "$USER" == 0 ]]; then
+        systemctl disable theairtraffic-mlat
+    else
+        # Enable theairtraffic-mlat service
+        systemctl enable theairtraffic-mlat
+        # Start or restart theairtraffic-mlat service
+        systemctl restart theairtraffic-mlat || true
+    fi
 fi
 
 echo 70
