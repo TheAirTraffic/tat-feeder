@@ -1,9 +1,15 @@
 #!/bin/bash
 
-UUID_FILE="/boot/tat-uuid"
-
-# Let's make sure the UUID tools are installed...
-
+if [ -f /boot/adsb-config.txt ]; then
+    UUID_FILE="/boot/tat-uuid"
+else
+    mkdir -p /usr/local/share/theairtraffic
+    UUID_FILE="/usr/local/share/theairtraffic/tat-uuid"
+    # move old file position
+    if [ -f /boot/tat-uuid ]; then
+        mv -f /boot/tat-uuid $UUID_FILE
+    fi
+fi
 
 function aptInstall() {
     if ! apt install -y --no-install-recommends --no-install-suggests "$@"; then
@@ -12,6 +18,7 @@ function aptInstall() {
     fi
 }
 function generateUUID() {
+    # Let's make sure the UUID tools are installed...
     if ! command -v uuidgen &>/dev/null; then
         echo "Can't find uuidgen in path, trying to install uuidgen..."
         aptInstall uuid-runtime

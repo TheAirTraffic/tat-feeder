@@ -15,7 +15,10 @@ rm -f /lib/systemd/system/theairtraffic-mlat.service
 rm -f /lib/systemd/system/theairtraffic-mlat2.service
 rm -f /lib/systemd/system/theairtraffic-feed.service
 
+cp -f "$IPATH/tat-uuid" /tmp/tat-uuid
 rm -rf "$IPATH"
+mkdir -p "$IPATH"
+mv -f /tmp/tat-uuid "$IPATH/tat-uuid"
 
 set +x
 
