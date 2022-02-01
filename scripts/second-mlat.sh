@@ -24,6 +24,7 @@ ExecStart=/usr/local/share/theairtraffic/venv/bin/mlat-client \
     --lat $LATITUDE \
     --lon $LONGITUDE \
     --alt $ALTITUDE \
+    $UUID_FILE \
     $PRIVACY \
     $RESULTS
 Type=simple
