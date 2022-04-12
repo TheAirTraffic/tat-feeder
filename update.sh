@@ -294,6 +294,7 @@ fi
 echo 94
 
 systemctl is-active theairtraffic-feed || {
+    rm -f $IPATH/readsb_version
     echo "---------------------------------"
     journalctl -u theairtraffic-feed | tail -n10
     echo "---------------------------------"
@@ -305,6 +306,7 @@ systemctl is-active theairtraffic-feed || {
 
 echo 96
 systemctl is-active theairtraffic-mlat || {
+    rm -f $IPATH/mlat_version
     echo "---------------------------------"
     journalctl -u theairtraffic-mlat | tail -n10
     echo "---------------------------------"
