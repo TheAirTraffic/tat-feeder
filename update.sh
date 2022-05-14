@@ -333,6 +333,10 @@ if grep -qs 'SERVER_HOSTPORT.*feed.theairtraffic.com' /etc/default/mlat-client &
     systemctl disable --now mlat-client >> $LOGFILE 2>&1 || true
 fi
 
+if [[ -f /etc/default/theairtraffic ]]; then
+    sed -i -e 's/feed.theairtraffic.com,30004,beast_reduce_out,feed.theairtraffic.com,64004/feed1.theairtraffic.com,30004,beast_reduce_out,feed2.theairtraffic.com,64004/' /etc/default/theairtraffic || true
+fi
+
 
 echo 100
 echo "---------------------"
