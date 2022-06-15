@@ -224,10 +224,10 @@ if ls -l /etc/systemd/system/theairtraffic-mlat.service 2>&1 | grep '/dev/null' 
     sleep 3
 else
     if [[ "$LATITUDE" == 0 ]] || [[ "$LONGITUDE" == 0 ]] || [[ "$USER" == 0 ]]; then
-        systemctl disable theairtraffic-mlat
+        systemctl disable theairtraffic-mlat || true
     else
         # Enable theairtraffic-mlat service
-        systemctl enable theairtraffic-mlat
+        systemctl enable theairtraffic-mlat || true
         # Start or restart theairtraffic-mlat service
         systemctl restart theairtraffic-mlat || true
     fi
@@ -279,7 +279,7 @@ echo 82
 
 if ! ls -l /etc/systemd/system/theairtraffic-feed.service 2>&1 | grep '/dev/null' &>/dev/null; then
     # Enable theairtraffic-feed service
-    systemctl enable theairtraffic-feed
+    systemctl enable theairtraffic-feed || true
     echo 92
     # Start or restart theairtraffic-feed service
     systemctl restart theairtraffic-feed || true
