@@ -133,11 +133,11 @@ rm -rf /usr/local/share/TheAirTraffic &>/dev/null
 cp "$GIT/uninstall.sh" "$IPATH"
 cp "$GIT"/scripts/*.sh "$IPATH"
 
-USER=theairtraffic
-if ! id -u "${USER}" &>/dev/null
+UNAME=theairtraffic
+if ! id -u "${UNAME}" &>/dev/null
 then
     # 2nd syntax is for fedora / centos
-    adduser --system --home "$IPATH" --no-create-home --quiet "$USER" || adduser --system --home-dir "$IPATH" --no-create-home "$USER"
+    adduser --system --home "$IPATH" --no-create-home --quiet "$UNAME" || adduser --system --home-dir "$IPATH" --no-create-home "$UNAME"
 fi
 
 echo 4
@@ -229,6 +229,12 @@ if ls -l /etc/systemd/system/theairtraffic-mlat.service 2>&1 | grep '/dev/null' 
     echo "--------------------"
     sleep 3
 else
+    if [ -f /boot/adsb-config.txt ]; then
+        source /boot/adsb-config.txt
+        source /boot/tat-env
+    else
+        source /etc/default/theairtraffic
+    fi
     if [[ "$LATITUDE" == 0 ]] || [[ "$LONGITUDE" == 0 ]] || [[ "$USER" == 0 ]]; then
         systemctl disable theairtraffic-mlat || true
     else
