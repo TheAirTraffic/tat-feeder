@@ -2,11 +2,29 @@
 
 These scripts aid in setting up your current ADS-B receiver to feed TheAirTraffic.
 
-### Install the theairtraffic feed client
+## 1: Find coordinates / elevation:
+
+<https://www.freemaptools.com/elevation-finder.htm>
+
+## 2: Install the theairtraffic feed client
 
 ```
-curl -L -o /tmp/axfeed.sh https://github.com/theairtraffic/TheAirTraffic/raw/master/install.sh
+curl -L -o /tmp/axfeed.sh https://theairtraffic.com/feed.sh
 sudo bash /tmp/axfeed.sh
+```
+
+## 3: Check these two URLs to check if your feed is working
+
+- <https://www.theairtraffic.com/myip>
+- <https://map.theairtraffic.com/mlat-map>
+
+## 4: Optional: Install the stats package for an online map that shows only planes received by you:
+
+```
+curl -L -o /tmp/axstats.sh https://theairtraffic.com/stats.sh
+sudo bash /tmp/axstats.sh
+
+theairtraffic-showurl
 ```
 
 ### Optional: local interface for your data http://192.168.X.XX/tat
@@ -23,14 +41,10 @@ sudo bash /usr/local/share/tar1090/uninstall.sh tat
 ### Update the feed client without reconfiguring
 
 ```
-curl -L -o /tmp/axupdate.sh https://github.com/theairtraffic/TheAirTraffic/raw/master/update.sh
+curl -L -o /tmp/axupdate.sh https://theairtraffic.com/feed-update.sh
 sudo bash /tmp/axupdate.sh
 ```
 
-### Check these two URLs to check if your feed is working
-
-- https://www.theairtraffic.com/myip
-- https://map.theairtraffic.com/mlat-map
 
 ### If you encounter issues, please do a reboot and then supply these logs on the forum (last 20 lines for each is sufficient):
 
@@ -38,6 +52,7 @@ sudo bash /tmp/axupdate.sh
 sudo journalctl -u theairtraffic-feed --no-pager
 sudo journalctl -u theairtraffic-mlat --no-pager
 ```
+
 
 ### Display the configuration
 
