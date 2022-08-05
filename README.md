@@ -1,6 +1,7 @@
 # TheAirTraffic Setup Scripts :airplane:
 
-These scripts aid in setting up your current ADS-B receiver to feed TheAirTraffic.
+- These scripts aid in setting up your current ADS-B receiver to feed TheAirTraffic.
+- They will not disrupt any existing feed clients already present
 
 ## 1: Find coordinates / elevation:
 
