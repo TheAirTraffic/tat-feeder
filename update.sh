@@ -93,7 +93,7 @@ function getGIT() {
     rm -rf "$tmp" "$tmp.folder"; popd > /dev/null; return 1;
 }
 
-REPO="https://github.com/theairtraffic/TheAirTraffic.git"
+REPO="https://github.com/theairtraffic/feedclient.git"
 BRANCH="master"
 
 IPATH=/usr/local/share/theairtraffic
