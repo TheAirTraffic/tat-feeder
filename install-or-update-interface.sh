@@ -23,4 +23,4 @@ GIT="/usr/local/share/tar1090/git"
 
 getGIT "$REPO" "$BRANCH" "$GIT"
 
-bash "$GIT/install.sh" "/run/theairtraffic-feed" "tat"
+bash "$GIT/install.sh" "/run/theairtraffic-feed" "theairtraffic"
