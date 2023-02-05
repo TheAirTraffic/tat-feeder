@@ -1,8 +1,8 @@
 #!/bin/bash
 
-if grep -qs -e 'LATITUDE' /boot/adsb-config.txt &>/dev/null && [[ -f /boot/tat-env ]]; then
-    source /boot/adsb-config.txt
-    source /boot/tat-env
+if grep -qs -e 'LATITUDE' /boot/theairtraffic-config.txt &>/dev/null && [[ -f /boot/theairtraffic-env ]]; then
+    source /boot/theairtraffic-config.txt
+    source /boot/theairtraffic-env
 else
     source /etc/default/theairtraffic
 fi
@@ -28,7 +28,7 @@ UAT_PORT=$(echo $UAT_INPUT | cut -d: -f2)
 UAT_SOURCE="--net-connector $UAT_IP,$UAT_PORT,uat_in,silent_fail"
 
 
-exec /usr/local/share/theairtraffic/feed-tat --net --net-only --quiet \
+exec /usr/local/share/theairtraffic/feed-theairtraffic --net --net-only --quiet \
     --write-json /run/theairtraffic-feed \
     --net-beast-reduce-interval $REDUCE_INTERVAL \
     $TARGET $NET_OPTIONS \

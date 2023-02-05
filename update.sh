@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #####################################################################################
-#                        THEAIRTRAFFIC SETUP SCRIPT                                #
+#                        TheAirTraffic SETUP SCRIPT                                #
 #####################################################################################
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #                                                                                   #
@@ -95,7 +95,7 @@ function getGIT() {
     rm -rf "$tmp" "$tmp.folder"; return 1
 }
 
-REPO="https://github.com/theairtraffic/feedclient.git"
+REPO="https://github.com/Jxck-S/feedclient.git"
 BRANCH="master"
 
 IPATH=/usr/local/share/theairtraffic
@@ -121,9 +121,9 @@ if diff "$GIT/update.sh" "$IPATH/update.sh" &>/dev/null; then
     exit $?
 fi
 
-if [ -f /boot/adsb-config.txt ]; then
-    source /boot/adsb-config.txt
-    source /boot/tat-env
+if [ -f /boot/theairtraffic-config.txt ]; then
+    source /boot/theairtraffic-config.txt
+    source /boot/theairtraffic-env
 else
     source /etc/default/theairtraffic
     if ! grep -qs -e UAT_INPUT /etc/default/theairtraffic; then
@@ -150,7 +150,7 @@ else
 fi
 
 # remove previously used folder to avoid confusion
-rm -rf /usr/local/share/TheAirTraffic &>/dev/null
+rm -rf /usr/local/share/theairtraffic &>/dev/null
 
 cp "$GIT/uninstall.sh" "$IPATH"
 cp "$GIT"/scripts/*.sh "$IPATH"
@@ -232,7 +232,7 @@ else
         echo "--------------------"
         echo "Installing mlat-client failed, if there was an old version it has been restored."
         echo "Will continue installation to try and get at least the feed client working."
-        echo "Please repot this error to the theairtraffic forums or discord."
+        echo "Please repot this error to the  forums or discord."
         echo "--------------------"
     fi
 fi
@@ -273,7 +273,7 @@ if grep -E 'wheezy|jessie' /etc/os-release -qs; then
 fi
 READSB_VERSION="$(git ls-remote $READSB_REPO $READSB_BRANCH | cut -f1 || echo $RANDOM-$RANDOM )"
 READSB_GIT="$IPATH/readsb-git"
-READSB_BIN="$IPATH/feed-tat"
+READSB_BIN="$IPATH/feed-theairtraffic"
 if [[ $REINSTALL != yes ]] && grep -e "$READSB_VERSION" -qs $IPATH/readsb_version \
     && "$READSB_BIN" -V && systemctl is-active theairtraffic-feed &>/dev/null
 then
@@ -369,7 +369,7 @@ if grep -qs 'SERVER_HOSTPORT.*feed.theairtraffic.com' /etc/default/mlat-client &
 fi
 
 if [[ -f /etc/default/theairtraffic ]]; then
-    sed -i -e 's/feed.theairtraffic.com,30004,beast_reduce_out,feed.theairtraffic.com,64004/feed1.theairtraffic.com,30004,beast_reduce_out,feed2.theairtraffic.com,64004/' /etc/default/theairtraffic || true
+    sed -i -e 's/feed.theairtraffic.com,30004,beast_reduce_out,feed.theairtraffic.com,64004/feed.theairtraffic.com,30004,beast_reduce_out/' /etc/default/theairtraffic || true
 fi
 
 
@@ -384,15 +384,9 @@ Thanks for choosing to share your data with TheAirTraffic!
 
 If you're curious, check your feed status after 5 min:
 
-https://theairtraffic.com/myip/
-http://theairtraffic.com/sync
+https://theairtraffic.com/feed/myip/
 
-Question? Issues? Go here:
-https://www.theairtraffic.com/forum/threads/theairtraffic-setup-scripts.631609/
-https://discord.gg/n9dGbkTtZm
 
-Webinterface to show the data transmitted? Run this command:
-sudo bash /usr/local/share/theairtraffic/git/install-or-update-interface.sh
 "
 
 INPUT_IP=$(echo $INPUT | cut -d: -f1)

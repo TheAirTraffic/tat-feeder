@@ -39,8 +39,8 @@ Nice=-1
 WantedBy=default.target
 EOF
 
-if [[ -f /boot/adsb-config.txt ]]; then
-    sed -i -e 's#EnvironmentFile.*#EnvironmentFile=/boot/tat-env\nEnvironmentFile=/boot/adsb-config.txt#' "$SERVICE"
+if [[ -f /boot/theairtraffic-config.txt ]]; then
+    sed -i -e 's#EnvironmentFile.*#EnvironmentFile=/boot/theairtraffic-env\nEnvironmentFile=/boot/theairtraffic-config.txt#' "$SERVICE"
 fi
 
 sed -i -e "s/SERVERPORT/${1}/" "$SERVICE"

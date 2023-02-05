@@ -1,8 +1,8 @@
 #!/bin/bash
 
-if grep -qs -e 'LATITUDE' /boot/adsb-config.txt &>/dev/null && [[ -f /boot/tat-env ]]; then
-    source /boot/adsb-config.txt
-    source /boot/tat-env
+if grep -qs -e 'LATITUDE' /boot/theairtraffic-config.txt &>/dev/null && [[ -f /boot/theairtraffic-env ]]; then
+    source /boot/theairtraffic-config.txt
+    source /boot/theairtraffic-env
 else
     source /etc/default/theairtraffic
 fi
