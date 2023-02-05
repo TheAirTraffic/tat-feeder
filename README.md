@@ -19,21 +19,9 @@ sudo bash /tmp/axfeed.sh
 - <https://www.theairtraffic.com/myip>
 - <https://map.theairtraffic.com/mlat-map>
 
-## 4: Optional: Install the stats package for an online map that shows only planes received by you:
 
-```
-curl -L -o /tmp/axstats.sh https://theairtraffic.com/stats.sh
-sudo bash /tmp/axstats.sh
 
-theairtraffic-showurl
-```
 
-### Optional: local interface for your data http://192.168.X.XX/tat
-
-Install / Update:
-```
-sudo bash /usr/local/share/theairtraffic/git/install-or-update-interface.sh
-```
 Remove:
 ```
 sudo bash /usr/local/share/tar1090/uninstall.sh tat
