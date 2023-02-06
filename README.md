@@ -1,4 +1,4 @@
-# TheAirTraffic feed client
+# (DONT USE) TheAirTraffic feed client
 
 - These scripts aid in setting up your current ADS-B receiver to feed TheAirTraffic.
 - They will not disrupt any existing feed clients already present
