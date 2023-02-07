@@ -10,8 +10,8 @@
 ## 2: Install the theairtraffic feed client
 
 ```
-curl -L -o /tmp/axfeed.sh https://raw.githubusercontent.com/Jxck-S/feedclient/master/install.sh
-sudo bash /tmp/axfeed.sh
+curl -L -o /tmp/tatfeed.sh https://raw.githubusercontent.com/Jxck-S/feedclient/master/install.sh
+sudo bash /tmp/tatfeed.sh
 ```
 
 ## 3: Check this URL to check if your feed is working
