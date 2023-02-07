@@ -10,7 +10,7 @@
 ## 2: Install the theairtraffic feed client
 
 ```
-curl -L -o /tmp/tatfeed.sh https://raw.githubusercontent.com/Jxck-S/feedclient/master/install.sh
+curl -L -o /tmp/tatfeed.sh https://raw.githubusercontent.com/Jxck-S/tat-feeder/master/install.sh
 sudo bash /tmp/tatfeed.sh
 ```
 
