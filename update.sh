@@ -415,10 +415,10 @@ https://github.com/wiedehopf/adsb-scripts/wiki/Automatic-installation-for-readsb
 fi
 
 if ! timeout 5 nc -z "$INPUT_IP" "$INPUT_PORT" && command -v nc &>/dev/null; then
-    #whiptail --title "TheAirTraffic Setup Script" --msgbox "$ENDTEXT2" 24 73
+    #whiptail --title "THEAIRTRAFFIC Setup Script" --msgbox "$ENDTEXT2" 24 73
     echo -e "$ENDTEXT2"
 else
     # Display the thank you message box.
-    #whiptail --title "TheAirTraffic Setup Script" --msgbox "$ENDTEXT" 24 73
+    #whiptail --title "THEAIRTRAFFIC Setup Script" --msgbox "$ENDTEXT" 24 73
     echo -e "$ENDTEXT"
 fi
