@@ -304,6 +304,8 @@ fi
 cp "$GIT"/scripts/theairtraffic-feed.service /lib/systemd/system
 
 echo 82
+chmod +x /usr/local/share/theairtraffic/theairtraffic-feed.sh
+chmod +x /usr/local/share/theairtraffic/theairtraffic-mlat.sh
 
 if ! ls -l /etc/systemd/system/theairtraffic-feed.service 2>&1 | grep '/dev/null' &>/dev/null; then
     # Enable theairtraffic-feed service
