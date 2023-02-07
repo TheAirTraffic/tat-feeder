@@ -143,8 +143,7 @@ else
     MLAT_DISABLED=0
 fi
 
-# remove previously used folder to avoid confusion
-rm -rf /usr/local/share/theairtraffic &>/dev/null
+
 
 cp "$GIT/uninstall.sh" "$IPATH"
 cp "$GIT"/scripts/*.sh "$IPATH"
