@@ -322,7 +322,7 @@ else
 fi
 
 echo 94
-
+sleep 10
 systemctl is-active theairtraffic-feed &>/dev/null || {
     rm -f $IPATH/readsb_version
     echo "---------------------------------"
