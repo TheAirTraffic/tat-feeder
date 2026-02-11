@@ -16,7 +16,7 @@ sudo bash /tmp/tatfeed.sh
 
 ## 3: Check this URL to check if your feed is working
 
-- <https://theairtraffic.com/feed/myip/>
+- <[https://theairtraffic.com/myip/](https://theairtraffic.com/myip)>
 
 
 ### Update the feed client without reconfiguring
