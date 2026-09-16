@@ -395,13 +395,14 @@ ENDTEXT2="
 ---------------------
 No data available from IP $INPUT_IP on port $INPUT_PORT!
 ---------------------
-If your data source is another device / receiver, see the advice here:
-https://github.com/theairtraffic/wiki/wiki/Datasource-other-device
+If your data source is another device / receiver, set INPUT in
+/etc/default/theairtraffic to that device's address, for example:
+INPUT="192.168.1.50:30005"
 "
 if [ -f /etc/fr24feed.ini ] || [ -f /etc/rb24.ini ]; then
     ENDTEXT2+="
 It looks like you are running FR24 or RB24
-This means you will need to install a stand-alone decoder so data are avaible on port 30005!
+This means you will need to install a stand-alone decoder so data are available on port 30005!
 
 If you have the SDR connected to this device, we recommend using this script to install and configure a stand-alone decoder:
 
