@@ -34,7 +34,17 @@ sudo bash /tmp/tatfeed.sh
 
 Compiles from source, so allow a few minutes on a Pi. You'll be asked for a feeder name (shown on the MLAT map, pin offset for privacy), your coordinates to five decimal places, and altitude with an explicit unit and no spaces — `255ft` or `78m`.
 
-Check your feed after ~5 minutes at **<https://theairtraffic.com/myip/>**.
+Check your feed after ~5 minutes at **<https://theairtraffic.com/myip>**.
+
+Once you're up:
+
+| | |
+|---|---|
+| [Live Map](https://globe.theairtraffic.com) | The globe, showing everything the network sees |
+| [Feeder Status](https://theairtraffic.com/myip) | Whether your receiver is getting through |
+| [Feeder Map](https://theairtraffic.com/feeder-map) | Where the network's receivers are |
+| [MLAT Sync Stats](https://theairtraffic.com/sync) | Which receivers yours is synchronised with |
+| [Stats](https://theairtraffic.com/stats) | Network-wide coverage and totals |
 
 ## Update
 
@@ -79,6 +89,8 @@ sudo bash /usr/local/share/theairtraffic/git/uninstall.sh
 **MLAT not syncing.** Needs accurate coordinates and a synced clock. The installer sets up `chrony` unless chrony or ntp is already running.
 
 **Install log.** `/usr/local/share/theairtraffic/lastlog`
+
+Questions or problems? Ask in [Discord](https://grndcntrl.net/discord).
 
 ## Credits
 
