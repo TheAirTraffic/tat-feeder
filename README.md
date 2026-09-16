@@ -10,7 +10,7 @@
 ## 2: Install the theairtraffic feed client
 
 ```
-curl -L -o /tmp/tatfeed.sh https://raw.githubusercontent.com/Jxck-S/tat-feeder/master/install.sh
+curl -L -o /tmp/tatfeed.sh https://raw.githubusercontent.com/TheAirTraffic/tat-feeder/master/install.sh
 sudo bash /tmp/tatfeed.sh
 ```
 
@@ -22,6 +22,6 @@ sudo bash /tmp/tatfeed.sh
 ### Update the feed client without reconfiguring
 
 ```
-curl -L -o /tmp/axupdate.sh https://raw.githubusercontent.com/Jxck-S/feedclient/master/update.sh
+curl -L -o /tmp/axupdate.sh https://raw.githubusercontent.com/TheAirTraffic/tat-feeder/master/update.sh
 sudo bash /tmp/axupdate.sh
 ```
