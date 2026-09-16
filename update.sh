@@ -89,7 +89,7 @@ function getGIT() {
     rm -rf "$tmp" "$tmp.folder"; return 1
 }
 
-REPO="https://github.com/Jxck-S/feedclient.git"
+REPO="https://github.com/TheAirTraffic/tat-feeder.git"
 BRANCH="master"
 
 IPATH=/usr/local/share/theairtraffic
@@ -180,7 +180,7 @@ then
     rm -rf "$VENV"
 fi
 
-MLAT_REPO="https://github.com/theairtraffic/mlat-client.git"
+MLAT_REPO="https://github.com/TheAirTraffic/mlat-client.git"
 MLAT_BRANCH="master"
 MLAT_VERSION="$(git ls-remote $MLAT_REPO $MLAT_BRANCH | cut -f1 || echo $RANDOM-$RANDOM )"
 if [[ $REINSTALL != yes ]] && grep -e "$MLAT_VERSION" -qs $IPATH/mlat_version \

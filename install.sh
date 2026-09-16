@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-REPO="https://github.com/Jxck-S/feedclient.git"
+REPO="https://github.com/TheAirTraffic/tat-feeder.git"
 BRANCH="master"
 IPATH=/usr/local/share/theairtraffic
 mkdir -p $IPATH
