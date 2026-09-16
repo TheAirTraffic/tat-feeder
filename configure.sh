@@ -129,8 +129,8 @@ ALTITUDE="$RECEIVERALTITUDE"
 UAT_INPUT="127.0.0.1:30978"
 
 RESULTS="--results beast,connect,127.0.0.1:30104"
-RESULTS2="--results basestation,listen,31003"
-RESULTS3="--results beast,listen,30157"
+RESULTS2="--results basestation,listen,31023"
+RESULTS3="--results beast,listen,30197"
 #RESULTS4="--results beast,connect,127.0.0.1:30154"
 # add --privacy between the quotes below to disable having the feed name shown on the mlat map
 # (position is never shown accurately no matter the settings)
