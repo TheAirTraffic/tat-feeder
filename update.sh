@@ -383,7 +383,7 @@ Thanks for choosing to share your data with TheAirTraffic!
 
 If you're curious, check your feed status after 5 min:
 
-https://theairtraffic.com/feed/myip/
+https://theairtraffic.com/myip/
 
 
 "
