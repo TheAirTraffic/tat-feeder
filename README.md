@@ -90,7 +90,7 @@ sudo bash /usr/local/share/theairtraffic/git/uninstall.sh
 
 **Install log.** `/usr/local/share/theairtraffic/lastlog`
 
-Questions or problems? Ask in [Discord](https://grndcntrl.net/discord).
+Questions or problems? Ask in [Discord](https://grndcntrl.net/discord) or on [r/TheAirTraffic](https://www.reddit.com/r/TheAirTraffic/).
 
 ## Credits
 
