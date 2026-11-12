@@ -24,7 +24,7 @@ ExecStart=/usr/local/share/theairtraffic/venv/bin/mlat-client \
     --lat $LATITUDE \
     --lon $LONGITUDE \
     --alt $ALTITUDE \
-    $UUID_FILE \
+    --uuid-file=/usr/local/share/theairtraffic/theairtraffic-uuid \
     $PRIVACY \
     $RESULTS
 Type=simple
@@ -41,6 +41,7 @@ EOF
 
 if [[ -f /boot/theairtraffic-config.txt ]]; then
     sed -i -e 's#EnvironmentFile.*#EnvironmentFile=/boot/theairtraffic-env\nEnvironmentFile=/boot/theairtraffic-config.txt#' "$SERVICE"
+    sed -i -e 's#--uuid-file=/usr/local/share/theairtraffic/theairtraffic-uuid#--uuid-file=/boot/theairtraffic-uuid#' "$SERVICE"
 fi
 
 sed -i -e "s/SERVERPORT/${1}/" "$SERVICE"

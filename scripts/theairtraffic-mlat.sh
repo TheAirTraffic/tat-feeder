@@ -23,6 +23,12 @@ while ! nc -z "$INPUT_IP" "$INPUT_PORT" && command -v nc &>/dev/null; do
     sleep 10
 done
 
+if [ -f /boot/theairtraffic-config.txt ]; then
+    UUID_FILE="/boot/theairtraffic-uuid"
+else
+    UUID_FILE="/usr/local/share/theairtraffic/theairtraffic-uuid"
+fi
+
 exec /usr/local/share/theairtraffic/venv/bin/mlat-client \
     --input-type "$INPUT_TYPE" --no-udp \
     --input-connect "$INPUT" \
@@ -32,5 +38,5 @@ exec /usr/local/share/theairtraffic/venv/bin/mlat-client \
     --lon "$LONGITUDE" \
     --alt "$ALTITUDE" \
     $PRIVACY \
-    $UUID_FILE \
+    --uuid-file=$UUID_FILE \
     $RESULTS $RESULTS1 $RESULTS2 $RESULTS3 $RESULTS4
