@@ -55,7 +55,7 @@ if [[ "$NOSPACENAME" != 0 ]]; then
     whiptail --backtitle "$BACKTITLETEXT" --title "$BACKTITLETEXT" \
         --msgbox "For MLAT the precise location of your antenna is required.\
         \n\nA small error of 15m/45ft will cause issues with MLAT!\
-        \n\nTo get your location, use any online map service or this website: https://www.mapcoordinates.net/en" 12 78 || abort
+        \n\nTo get your location and altitude, use: https://theairtraffic.com/elevation-finder" 12 78 || abort
 else
     whiptail --backtitle "$BACKTITLETEXT" --title "$BACKTITLETEXT" \
         --msgbox "MLAT DISABLED!.\
