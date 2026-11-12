@@ -28,12 +28,19 @@ UAT_PORT=$(echo $UAT_INPUT | cut -d: -f2)
 UAT_SOURCE="--net-connector $UAT_IP,$UAT_PORT,uat_in,silent_fail"
 
 
+if [ -f /boot/theairtraffic-config.txt ]; then
+    UUID_FILE="/boot/theairtraffic-uuid"
+else
+    UUID_FILE="/usr/local/share/theairtraffic/theairtraffic-uuid"
+fi
+
 exec /usr/local/share/theairtraffic/feed-theairtraffic --net --net-only --quiet \
+    --uuid-file=$UUID_FILE \
     --write-json /run/theairtraffic-feed \
     --net-beast-reduce-interval $REDUCE_INTERVAL \
     $TARGET $NET_OPTIONS \
     --lat "$LATITUDE" --lon "$LONGITUDE" \
-    $UUID_FILE $JSON_OPTIONS \
+    $JSON_OPTIONS \
     $UAT_SOURCE \
     $SOURCE \
 
