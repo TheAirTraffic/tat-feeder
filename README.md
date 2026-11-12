@@ -23,7 +23,7 @@ This doesn't replace your decoder or touch your SDR. It installs two services th
 
 ## Requirements
 
-A Linux receiver (Raspberry Pi OS, Debian, Ubuntu) already decoding ADS-B with Beast output on port `30005` — the default for readsb, dump1090, dump1090-fa and PiAware. You'll need root and your antenna's latitude, longitude and altitude ([elevation finder](https://www.freemaptools.com/elevation-finder.htm)).
+A Linux receiver (Raspberry Pi OS, Debian, Ubuntu) already decoding ADS-B with Beast output on port `30005`, the default for readsb, dump1090, dump1090-fa and PiAware. You'll need root and your antenna's latitude, longitude and altitude (get them from our [elevation finder](https://theairtraffic.com/elevation-finder)).
 
 ## Install
 
